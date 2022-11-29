@@ -2,7 +2,7 @@ import javax.swing.JFrame;
 
 public class App {
     JFrame frame = new JFrame("Gentleman tic tac toe");
-    game testgame = new game();
+    TicTacToe testgame = new TicTacToe();
 
     
     public static void main(String[] args) throws Exception {
@@ -13,17 +13,21 @@ public class App {
         frame.setSize(800,700);
 		frame.setVisible(true);
         // frame.setLayout(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   
-        for (short board : game.testwinstates) {
-            System.out.println(game.checkthreeinarow(board)); 
-        }
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         long start;
         long end;
-        drawboardtoconsole(testgame);
-        start = System.nanoTime();
+        long total = 0;
+        for (int i = 0; i < 100; i++) {
+            TicTacToe newgame = new TicTacToe();
+            start = System.nanoTime();
+            newgame.makebestmove();
+            end = System.nanoTime();
+            total += (end-start)/1000000;
+        }
+        System.out.println(total);
         testgame.makebestmove();
-        end = System.nanoTime();
-        System.out.println((end-start)/1000000);
+        drawboardtoconsole(testgame);
         drawboardtoconsole(testgame);
         testgame.makebestmove();
         drawboardtoconsole(testgame);
@@ -45,13 +49,13 @@ public class App {
         // System.out.println(testgame.occupied+","+testgame.noughts+","+testgame.crosses);
     }
 
-    public void drawboardtoconsole(game game) {
+    public void drawboardtoconsole(TicTacToe Game) {
         char[] board = new char[9];
         int i = 0;
-        for (short move : game.moves) {
-            if ((game.noughts & move) == move) {
+        for (short move : TicTacToe.moves) {
+            if ((Game.noughts & move) == move) {
                 board[i] = 'O';
-            } else if ((game.crosses & move) == move) {
+            } else if ((Game.crosses & move) == move) {
                 board[i] = 'X';
             } else {
                 board[i] = ' ';
