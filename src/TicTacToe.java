@@ -78,13 +78,13 @@ public class TicTacToe {
 
         for (short move : moves) {
             if ((move & occupied) == 0) {
-                if (crossturn) {
+                if (crossturn) { //maximize
                     byte score = minimax((short)(occupied | move), (short)(crosses | move), noughts, !crossturn);
                     if (score > bestscore) {
                         bestscore = score;
                         bestmove = move;
                     }
-                } else {
+                } else { //minimize
                     byte score = minimax((short)(occupied | move), crosses, (short)(noughts | move), !crossturn);
                     if (score < bestscore) {
                         bestscore = score;
