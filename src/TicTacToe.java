@@ -60,7 +60,7 @@ public class TicTacToe {
     public void makerandommove() { //dumb bot
         List<Short> list = Arrays.asList(moves);
         Collections.shuffle(list);
-        Short[] allmoves = new Short[1];
+        Short[] allmoves = new Short[9];
         list.toArray(allmoves);
         for (short move : allmoves) {
             if (makemove(move)) {
