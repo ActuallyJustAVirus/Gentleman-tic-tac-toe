@@ -80,14 +80,12 @@ public class TicTacToe {
             if ((move & occupied) == 0) {
                 if (crossturn) {
                     byte score = minimax((short)(occupied | move), (short)(crosses | move), noughts, !crossturn);
-                    // System.out.println(score);
                     if (score > bestscore) {
                         bestscore = score;
                         bestmove = move;
                     }
                 } else {
                     byte score = minimax((short)(occupied | move), crosses, (short)(noughts | move), !crossturn);
-                    // System.out.println(score);
                     if (score < bestscore) {
                         bestscore = score;
                         bestmove = move;
@@ -113,7 +111,6 @@ public class TicTacToe {
                     if (score > bestscore) {
                         bestscore = score;
                     }
-                    // bestscore = (byte)Math.max((int)score, (int)bestscore);
                 }
             }
             return bestscore;
@@ -130,7 +127,6 @@ public class TicTacToe {
                     if (score < bestscore) {
                         bestscore = score;
                     }
-                    // bestscore = (byte)Math.min((int)score, (int)bestscore);
                 }
             }
             return bestscore;
